@@ -1,0 +1,32 @@
+services:
+    sf_common.helper.password_updater:
+        class: Avdb\SymfonyCommon\Helper\PasswordUpdater
+        arguments:
+            - '@security.encoder_factory'
+
+    sf_common.entity_listener.user:
+        class: Avdb\SymfonyCommon\EventListener\UserEntityListener
+        arguments:
+            - '@sf_common.helper.password_updater'
+        tags:
+            - { name: doctrine.orm.entity_listener }
+
+    sf_common.admin_menu.builder:
+        class: Avdb\SymfonyCommon\Menu\AdminMenuBuilder
+        arguments:
+            - '@event_dispatcher'
+            - '@knp_menu.factory'
+
+    sf_common.admin_menu:
+        class: Knp\Menu\MenuItem
+        factory: [ "@sf_common.admin_menu.builder", createSidebarMenu ]
+        tags:
+            - { name: knp_menu.menu, alias: admin_menu }
+
+    sf_common.widget.admin_menu:
+        class: Avdb\SymfonyCommon\Widget\AdminMenuWidget
+        arguments:
+            - '@knp_menu.helper'
+        tags:
+            - { name: admin_widget.widget, priority: 10 }
+

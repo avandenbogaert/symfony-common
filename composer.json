@@ -1,21 +1,38 @@
 {
     "name": "avdb/symfony-common",
-    "license": "proprietary",
-    "type": "project",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
-            "": "src/"
-        },
-        "classmap": [
-        ]
+            "Avdb\\SymfonyCommon\\": "src/"
+        }
     },
-    "autoload-dev": {
+    "autoload-dev": {},
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.9",
+        "avdb/datatables-bundle": "^1.0@dev",
+        "avdb/doctrine-extra": "^1.0@dev",
+        "avdb/admin-lte-bundle": "^1.0@dev"
+    },
+    "require-dev": {},
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     },
     "repositories": [
-    ],
-    "require": {
-        "php": ">=5.5.9"
-    },
-    "require-dev": {
-    }
+        {
+            "type": "vcs",
+            "url": "git@github.com:avandenbogaert/DatatablesBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:avandenbogaert/doctrine-extra.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:avandenbogaert/admin-lte-bundle.git"
+        }
+    ]
 }
