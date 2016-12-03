@@ -2,7 +2,7 @@
 
 namespace Avdb\SymfonyCommon\Command;
 
-use Avdb\SymfonyCommon\Entity\BaseUser;
+use Avdb\SymfonyCommon\Entity\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -47,11 +47,16 @@ class CreateUserCommand extends ContainerAwareCommand
         $username = (string)$this->io->ask('username');
         $plainPassword = (string)$this->io->askHidden('password');
         $class = $this->userClass;
-        $user  = new $class($username, $plainPassword);
 
-        if(!$user instanceof BaseUser) {
+        $reflection = new \ReflectionClass($class);
+        $user = $reflection->newInstanceWithoutConstructor();
+
+        if(!$user instanceof UserInterface) {
             throw new  \RuntimeException(sprintf('The user class %s does not extends BaseUser', get_class($user)));
         }
+
+        $user->setPlainPassword($plainPassword);
+        $user->setUsername($username);
 
         if ($input->getOption('admin')) {
             $user->setRoles(['ROLE_ADMIN']);

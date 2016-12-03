@@ -1,7 +1,6 @@
 <?php
 namespace Avdb\SymfonyCommon\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,10 +38,17 @@ abstract class BaseUser implements UserInterface
     protected $plainPassword;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", nullable=false)
+     * @var \DateTime
      */
-    protected $salt;
+    private $created;
+
+    /**
+     * BaseUser constructor.
+     */
+    public function __construct()
+    {
+        $this->created = new \DateTime('now');
+    }
 
     /**
      * @return void
@@ -79,9 +85,30 @@ abstract class BaseUser implements UserInterface
     /**
      * @param array $roles
      */
-    public function setRoles($roles)
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function addRole($role)
+    {
+        if(!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+    }
+
+    /**
+     * @param $role
+     */
+    public function removeRole($role)
+    {
+        if (in_array($role, $this->roles, true)) {
+            $key = array_search($role, $this->roles, true);
+            unset($this->roles[$key]);
+        }
     }
 
     /**
@@ -105,15 +132,7 @@ abstract class BaseUser implements UserInterface
      */
     public function getSalt()
     {
-        return $this->salt;
-    }
-
-    /**
-     * @param string $salt
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
+        return null;
     }
 
     /**
@@ -132,4 +151,11 @@ abstract class BaseUser implements UserInterface
         $this->plainPassword = $plainPassword;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
 }

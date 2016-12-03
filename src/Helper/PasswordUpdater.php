@@ -2,7 +2,7 @@
 
 namespace Avdb\SymfonyCommon\Helper;
 
-use Avdb\SymfonyCommon\Entity\BaseUser;
+use Avdb\SymfonyCommon\Entity\UserInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class PasswordUpdater
@@ -23,12 +23,11 @@ class PasswordUpdater
     }
 
     /**
-     * @param BaseUser $user
+     * @param UserInterface $user
      */
-    public function updatePassword(BaseUser $user)
+    public function updatePassword(UserInterface $user)
     {
         $encoder = $this->encoderFactory->getEncoder($user);
-        $user->setSalt(substr(base64_encode(microtime()), 0, 25));
         $password = $encoder->encodePassword($user->getPlainPassword(), $user->getSalt());
 
         $user->setPassword($password);
