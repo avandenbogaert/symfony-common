@@ -28,5 +28,9 @@ services:
         arguments:
             - '@knp_menu.helper'
         tags:
-            - { name: admin_widget.widget, priority: 10 }
+            - { name: admin_lte.widget, priority: 10 }
 
+    sf_common.twig.extension.delete:
+        class: Avdb\SymfonyCommon\Twig\DeleteExtension
+        tags:
+            - { name: twig.extension }
