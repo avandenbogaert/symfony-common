@@ -1,4 +1,7 @@
-<a class="btn btn-flat btn-danger" data-toggle="modal" href="#delete-modal{{ randomid }}">
+<a class="btn {{ class }}" data-toggle="modal" href="#delete-modal{{ randomid }}">
+    {% if icon %}
+        <i class="fa fa-{{ icon }}"></i>
+    {% endif %}
     {{ label }}
 </a>
 

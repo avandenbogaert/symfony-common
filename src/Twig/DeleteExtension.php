@@ -21,6 +21,8 @@ class DeleteExtension extends \Twig_Extension
         $this->resolver->setRequired(['entity', 'uri']);
         $this->resolver->setDefault('label', 'delete');
         $this->resolver->setDefault('randomid', uniqid('',false));
+        $this->resolver->setDefault('class', 'btn-flat btn-danger');
+        $this->resolver->setDefault('icon', null);
     }
 
     public function getFunctions()
