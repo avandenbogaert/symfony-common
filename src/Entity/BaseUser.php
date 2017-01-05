@@ -39,6 +39,7 @@ abstract class BaseUser implements UserInterface
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $created;
 
