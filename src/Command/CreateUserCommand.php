@@ -48,8 +48,7 @@ class CreateUserCommand extends ContainerAwareCommand
         $plainPassword = (string)$this->io->askHidden('password');
         $class = $this->userClass;
 
-        $reflection = new \ReflectionClass($class);
-        $user = $reflection->newInstanceWithoutConstructor();
+        $user = new $class();
 
         if(!$user instanceof UserInterface) {
             throw new  \RuntimeException(sprintf('The user class %s does not extends BaseUser', get_class($user)));
