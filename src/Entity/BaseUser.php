@@ -39,7 +39,7 @@ abstract class BaseUser implements UserInterface
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Column(type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $created;
 
