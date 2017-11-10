@@ -9,14 +9,14 @@ $(function(){
         $new
             .hide()
             .appendTo($collection)
-            .fadeIn(300)
+            .fadeIn(100)
         ;
     });
 
     $body.on('click', '[collection-remove]', function(){
         $(this)
             .parents('[collection-entry]')
-            .fadeOut(300, function(){ $(this).remove(); });
+            .fadeOut(50, function(){ $(this).remove(); });
     });
 
     function collection(name) {
