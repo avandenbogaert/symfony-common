@@ -28,7 +28,7 @@ class AdminMenuWidget implements Widget
             'ancestorClass'     => 'active',
             'currentClass'      => 'active',
             'allow_safe_labels' => true,
-            'template'          => 'SymfonyCommonBundle:menu:knp_menu_lite.html.twig',
+            'template'          => '@SymfonyCommon/menu/knp_menu_lite.html.twig',
         ]);
     }
 
