@@ -20,19 +20,5 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:avandenbogaert/DatatablesBundle.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:avandenbogaert/doctrine-extra.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:avandenbogaert/admin-lte-bundle.git"
-        }
-    ]
+    }
 }
