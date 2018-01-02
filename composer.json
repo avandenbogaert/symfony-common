@@ -11,7 +11,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.9",
-        "avdb/datatables-bundle": "^1.0@dev",
+        "avdb/datatables-bundle": "^1.0@dev|0.9.*",
         "avdb/doctrine-extra": "^1.0@dev",
         "avdb/admin-lte-bundle": "^1.0@dev"
     },
